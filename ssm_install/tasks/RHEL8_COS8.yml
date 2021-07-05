@@ -1,0 +1,15 @@
+- name: install the ssm rpm on RHEL8 or CentOS8
+  dnf:
+    name: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+    state: present
+
+- name: enable and start ssm service on RHEL8 or CentOS8
+  systemd:
+    name: amazon-ssm-agent
+    state: started
+    enabled: yes
+
+- name: Restart ssm service on RHEL8 or CentOS8
+  systemd:
+    name: amazon-ssm-agent
+    state: restarted

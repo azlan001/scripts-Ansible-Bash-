@@ -1,0 +1,15 @@
+- name: install the ssm deb on Debian 8 or 9
+  apt:
+    deb: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
+    state: present
+
+- name: enable and start ssm service on Debian 8 or 9
+  service:
+    name: amazon-ssm-agent
+    state: started
+    enabled: yes
+
+- name: Restart ssm service on Debian 8 or 9
+  service:
+    name: amazon-ssm-agent
+    state: restarted

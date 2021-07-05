@@ -1,0 +1,15 @@
+- name: Install SSM on Redhat Family(AMAZON_LINUX_2 RHEL_7 CENTOS_7)
+  yum:
+    name: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+    state: present
+
+- name: Enable and Start SSM on Redhat Family(AMAZON_LINUX_2 RHEL_7 CENTOS_7)
+  systemd:
+    name: amazon-ssm-agent
+    state: started
+    enabled: yes
+
+- name: Restart SSM on Redhat Family(AMAZON_LINUX_2 RHEL_7 CENTOS_7)
+  systemd:
+    name: amazon-ssm-agent
+    state: restarted

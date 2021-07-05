@@ -1,0 +1,31 @@
+- name: Installing SSM on Ubuntu 16 or 18 or 20
+  block:
+    - name: Install using deb package on Ubuntu 16 or 18 or 20
+      apt:
+        deb: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
+        state: present
+    - name: Enable and Start ssm service when installed through deb package on Ubuntu 16 or 18 or 20
+      systemd:
+        name: amazon-ssm-agent
+        state: started
+        enabled: yes
+    - name: Restart ssm service when installed through deb package on Ubuntu 16 or 18 or 20
+      systemd:
+        name: amazon-ssm-agent
+        state: restarted
+  rescue:
+    - name: Install ssm with option --classic on Ubuntu 16 or 18 or 20
+      snap:
+        name: amazon-ssm-agent
+        classic: yes
+
+    - name: enable and start ssm service when installed through snap on Ubuntu 16 or 18 or 20
+      systemd:
+        name: snap.amazon-ssm-agent.amazon-ssm-agent.service
+        state: started
+        enabled: yes
+
+    - name: Restart ssm service when installed through snap on Ubuntu 16 or 18 or 20
+      systemd:
+        name: snap.amazon-ssm-agent.amazon-ssm-agent.service
+        state: restarted

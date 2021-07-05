@@ -1,0 +1,8 @@
+- name: "Running Playbook to install SSM agent"
+  hosts: all
+  gather_facts: true
+  become: true
+  become_method: sudo
+  become_user: root
+  roles:
+     - role: ssm_install

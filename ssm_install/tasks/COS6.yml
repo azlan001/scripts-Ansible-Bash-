@@ -1,0 +1,16 @@
+- name: install the ssm rpm on CentOS6
+  yum:
+    name: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+    state: present
+
+- name: enable and start ssm service on CentOS6
+  service:
+    name: amazon-ssm-agent
+    state: started
+    enabled: yes
+
+- name: Restart ssm service on CentOS6
+  service:
+    name: amazon-ssm-agent
+    state: restarted
+
